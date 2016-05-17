@@ -22,6 +22,9 @@ using Serilog.Sinks.DiagnosticTrace;
 
 namespace Serilog
 {
+    /// <summary>
+    /// Adds the WriteTo.Trace() extension method to <see cref="LoggerConfiguration"/>.
+    /// </summary>
     public static class TraceLoggerConfigurationExtensions
     {
         const string DefaultOutputTemplate = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}";
