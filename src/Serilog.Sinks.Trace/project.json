@@ -21,8 +21,8 @@
     "keyFile": "../../assets/Serilog.snk"
   },
   "frameworks": {
-    "net45": {},
-    "dotnet5.1": {
+    "net4.5": {},
+    "netstandard1.0": {
       "dependencies": {
         "System.Diagnostics.TraceSource": "4.0.0-rc2-24027"
       }
