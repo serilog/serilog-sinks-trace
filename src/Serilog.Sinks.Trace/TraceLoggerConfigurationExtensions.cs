@@ -19,6 +19,8 @@ using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting.Display;
 using Serilog.Sinks.DiagnosticTrace;
+using Serilog.Formatting;
+using Serilog.Formatting.Json;
 
 namespace Serilog
 {
@@ -51,6 +53,29 @@ namespace Serilog
             if (sinkConfiguration == null) throw new ArgumentNullException(nameof(sinkConfiguration));
             if (outputTemplate == null) throw new ArgumentNullException(nameof(outputTemplate));
             var formatter = new MessageTemplateTextFormatter(outputTemplate, formatProvider);
+            return Trace(sinkConfiguration, formatter, restrictedToMinimumLevel, levelSwitch);
+        }
+
+        /// <summary>
+        /// Write log events to the <see cref="System.Diagnostics.Trace"/>.
+        /// </summary>
+        /// <param name="sinkConfiguration">Logger sink configuration.</param>
+        /// <param name="restrictedToMinimumLevel">The minimum level for
+        /// events passed through the sink. Ignored when <paramref name="levelSwitch"/> is specified.</param>
+        /// <param name="levelSwitch">A switch allowing the pass-through minimum level
+        /// to be changed at runtime.</param>
+        /// <param name="formatter">A custom formatter to apply to the output events. This can be used with
+        /// e.g. <see cref="JsonFormatter"/> to produce JSON output. To customize the text layout only, use the
+        /// overload that accepts an output template instead.</param>
+        /// <returns>Configuration object allowing method chaining.</returns>
+        public static LoggerConfiguration Trace(
+            this LoggerSinkConfiguration sinkConfiguration,
+            ITextFormatter formatter,
+            LogEventLevel restrictedToMinimumLevel = LevelAlias.Minimum,
+            LoggingLevelSwitch levelSwitch = null)
+        {
+            if (sinkConfiguration == null) throw new ArgumentNullException(nameof(sinkConfiguration));
+            if (formatter == null) throw new ArgumentNullException(nameof(formatter));
             return sinkConfiguration.Sink(new TraceSink(formatter), restrictedToMinimumLevel, levelSwitch);
         }
     }
