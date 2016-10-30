@@ -7,10 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{037440DE-440
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{E9D1B5E1-DEB9-4A04-8BAB-24EC7240ADAF}"
 	ProjectSection(SolutionItems) = preProject
-		Build.ps1 = Build.ps1
-		global.json = global.json
-		NuGet.Config = NuGet.Config
-		README.md = README.md
 		assets\Serilog.snk = assets\Serilog.snk
 	EndProjectSection
 EndProject
@@ -19,6 +15,15 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5C546512-0A16-4730-BE35-88AD31D32AD7}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Serilog.Sinks.Trace.Tests", "test\Serilog.Sinks.Trace.Tests\Serilog.Sinks.Trace.Tests.xproj", "{1D56534C-4009-42C2-A573-789CAE6B8AA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "global", "global", "{EF92FCAF-D99B-43B1-98AA-6ABE30E3AD7E}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		Build.ps1 = Build.ps1
+		global.json = global.json
+		NuGet.Config = NuGet.Config
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
