@@ -41,9 +41,9 @@ namespace Serilog.Sinks.DiagnosticTrace
 
             if (logEvent.Level == LogEventLevel.Error || logEvent.Level == LogEventLevel.Fatal)
                 Trace.TraceError(text);
-             else if (logEvent.Level == LogEventLevel.Warning)
+            else if (logEvent.Level == LogEventLevel.Warning)
                 Trace.TraceWarning(text);
-             else if (logEvent.Level == LogEventLevel.Information)
+            else if (logEvent.Level == LogEventLevel.Information)
                 Trace.TraceInformation(text);
             Trace.WriteLine(text);
         }
