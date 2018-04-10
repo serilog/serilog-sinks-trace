@@ -45,7 +45,8 @@ namespace Serilog.Sinks.DiagnosticTrace
                 Trace.TraceWarning(text);
             else if (logEvent.Level == LogEventLevel.Information)
                 Trace.TraceInformation(text);
-            Trace.WriteLine(text);
+            else
+                Trace.WriteLine(text);
         }
     }
 }
