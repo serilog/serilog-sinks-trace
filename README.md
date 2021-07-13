@@ -10,4 +10,4 @@ var log = new LoggerConfiguration()
 
 * [Documentation](https://github.com/serilog/serilog/wiki)
 
-_Copyright &copy; 2016 Serilog Contributors - Provided under the [Apache License, Version 2.0](http://apache.org/licenses/LICENSE-2.0.html)._
+_Copyright &copy; Serilog Contributors - Provided under the [Apache License, Version 2.0](http://apache.org/licenses/LICENSE-2.0.html)._
