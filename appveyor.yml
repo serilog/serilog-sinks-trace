@@ -1,16 +1,16 @@
 version: '{build}'
 skip_tags: true
-image: Visual Studio 2019
+image: Visual Studio 2022
 configuration: Release
 test: off
 build_script:
-- ps: ./Build.ps1
+- pwsh: ./Build.ps1
 artifacts:
 - path: artifacts/Serilog.*.nupkg
 deploy:
 - provider: NuGet
   api_key:
-    secure: rbdBqxBpLt4MkB+mrDOYNDOd8aVZ1zMkysaVNAXNKnC41FYifzX3l9LM8DCrUWU5
+    secure: sDnchSg4TZIOK7oIUI6BJwFPNENTOZrGNsroGO1hehLJSvlHpFmpTwiX8+bgPD+Q
   skip_symbols: true
   on:
     branch: /^(main|dev)$/
