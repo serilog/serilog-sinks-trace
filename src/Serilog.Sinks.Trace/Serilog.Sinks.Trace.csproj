@@ -31,8 +31,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="..\..\assets\serilog-sink-nuget.png" Visible="false" PackagePath="/"/>
-        <None Include="..\..\README.md" Visible="false" PackagePath="/"/>
+        <None Include="..\..\assets\serilog-sink-nuget.png" Pack="true" Visible="false" PackagePath="/" />
+        <None Include="..\..\README.md" Pack="true" Visible="false" PackagePath="/" />
     </ItemGroup>
 
 </Project>
