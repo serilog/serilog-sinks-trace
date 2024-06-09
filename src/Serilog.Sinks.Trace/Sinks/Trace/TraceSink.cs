@@ -13,40 +13,45 @@
 // limitations under the License.
 
 using System;
-using System.Diagnostics;
 using System.IO;
 using Serilog.Core;
 using Serilog.Events;
 using Serilog.Formatting;
 
-namespace Serilog.Sinks.DiagnosticTrace
+namespace Serilog.Sinks.Trace;
+
+class TraceSink : ILogEventSink
 {
-    class TraceSink : ILogEventSink
+    readonly ITextFormatter _textFormatter;
+
+    public TraceSink(ITextFormatter textFormatter)
     {
-        readonly ITextFormatter _textFormatter;
+        _textFormatter = textFormatter;
+    }
 
-        public TraceSink(ITextFormatter textFormatter)
+    public void Emit(LogEvent logEvent)
+    {
+        if (logEvent == null) throw new ArgumentNullException(nameof(logEvent));
+        var sr = new StringWriter();
+        _textFormatter.Format(logEvent, sr);
+
+        var text = sr.ToString().Trim();
+
+        switch (logEvent.Level)
         {
-            if (textFormatter == null) throw new ArgumentNullException(nameof(textFormatter));
-            _textFormatter = textFormatter;
-        }
-
-        public void Emit(LogEvent logEvent)
-        {
-            if (logEvent == null) throw new ArgumentNullException(nameof(logEvent));
-            var sr = new StringWriter();
-            _textFormatter.Format(logEvent, sr);
-
-            var text = sr.ToString().Trim();
-
-            if (logEvent.Level == LogEventLevel.Error || logEvent.Level == LogEventLevel.Fatal)
-                Trace.TraceError(text);
-            else if (logEvent.Level == LogEventLevel.Warning)
-                Trace.TraceWarning(text);
-            else if (logEvent.Level == LogEventLevel.Information)
-                Trace.TraceInformation(text);
-            else
-                Trace.WriteLine(text);
+            case LogEventLevel.Error:
+            case LogEventLevel.Fatal:
+                System.Diagnostics.Trace.TraceError(text);
+                break;
+            case LogEventLevel.Warning:
+                System.Diagnostics.Trace.TraceWarning(text);
+                break;
+            case LogEventLevel.Information:
+                System.Diagnostics.Trace.TraceInformation(text);
+                break;
+            default:
+                System.Diagnostics.Trace.WriteLine(text);
+                break;
         }
     }
 }
